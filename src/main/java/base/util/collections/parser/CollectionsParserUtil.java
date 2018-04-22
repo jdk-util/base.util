@@ -1,5 +1,6 @@
 package base.util.collections.parser;
 
+import base.util.collections.CollectionUtil;
 import base.util.reflex.ClassParserUtil;
 
 import java.util.*;
@@ -219,5 +220,45 @@ public class CollectionsParserUtil {
     public static <T> long[] parseListToLongArrayBreak(List<T> list){
 
         return list.stream().mapToLong(one -> ClassParserUtil.formatBaseClass(one,long.class)).toArray();
+    }
+
+    /**
+     * 将list集合转换成Map<K,List<T>> 集合
+     * @param list 需要转换得集合
+     * @param key 提取方式
+     * @param <T> 数据类型
+     * @param <K> key类型
+     * @return
+     */
+    public static <T,K> Map<K,List<T>> collectFieldToMapList(List<T> list,Function<T,K> key){
+        Map<K,List<T>> map = new HashMap<>();
+
+        if(CollectionUtil.isEmpty(list)){
+
+            return map;
+
+        }
+
+        list.forEach(t -> {
+
+            List<T> valueList = map.get(key.apply(t));
+
+            if(CollectionUtil.isEmpty(valueList)){
+
+                valueList = new ArrayList<>();
+
+                valueList.add(t);
+
+                map.put(key.apply(t),valueList);
+
+            }else {
+
+                valueList.add(t);
+
+            }
+
+        });
+
+        return map;
     }
 }
