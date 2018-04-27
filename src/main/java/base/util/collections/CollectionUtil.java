@@ -17,7 +17,7 @@ public class CollectionUtil {
      */
     public static boolean isEmpty(Collection collection){
 
-        if(Objects.isNull(collection) && collection.isEmpty()){
+        if(Objects.isNull(collection) || collection.isEmpty()){
 
             return true;
 
