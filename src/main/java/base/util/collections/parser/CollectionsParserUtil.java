@@ -228,7 +228,7 @@ public class CollectionsParserUtil {
      * @param key 提取方式
      * @param <T> 数据类型
      * @param <K> key类型
-     * @return
+     * @return map<K,List<T>>
      */
     public static <T,K> Map<K,List<T>> collectFieldToMapList(List<T> list,Function<T,K> key){
         Map<K,List<T>> map = new HashMap<>();
