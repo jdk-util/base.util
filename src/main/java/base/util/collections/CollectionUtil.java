@@ -33,7 +33,7 @@ public class CollectionUtil {
      */
     public static boolean isNotEmpty(Collection collection){
 
-        if(Objects.isNull(collection) && collection.isEmpty()){
+        if(Objects.isNull(collection) || collection.isEmpty()){
 
             return false;
 
@@ -63,7 +63,7 @@ public class CollectionUtil {
      */
     public static boolean isNotEmpty(Map collection){
 
-        if(Objects.isNull(collection) && collection.isEmpty()){
+        if(Objects.isNull(collection) || collection.isEmpty()){
 
             return false;
 
