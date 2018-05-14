@@ -5,6 +5,7 @@ import org.junit.Test;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 /**
  * @Author: weixuedong
@@ -48,5 +49,16 @@ public class CollectionsOperatorUtilTest {
         list.add(3000);
         long count =  CollectionsOperatorUtil.repeatTimes(list,3000);
         System.out.println(count);
+    }
+    @Test
+    public void testGroupCount(){
+        List<Integer> list = new ArrayList<>();
+        list.add(1);
+        list.add(100);
+        list.add(3000);
+        list.add(3000);
+        list.add(3000);
+        Map<Integer, List<Integer>> countGroupMap = CollectionsOperatorUtil.countGroup(3, list);
+        System.out.println(countGroupMap);
     }
 }

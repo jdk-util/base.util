@@ -232,33 +232,22 @@ public class CollectionsParserUtil {
      */
     public static <T,K> Map<K,List<T>> collectFieldToMapList(List<T> list,Function<T,K> key){
         Map<K,List<T>> map = new HashMap<>();
-
         if(CollectionUtil.isEmpty(list)){
-
             return map;
-
         }
 
         list.forEach(t -> {
-
             List<T> valueList = map.get(key.apply(t));
-
             if(CollectionUtil.isEmpty(valueList)){
-
                 valueList = new ArrayList<>();
-
                 valueList.add(t);
-
                 map.put(key.apply(t),valueList);
-
             }else {
-
                 valueList.add(t);
-
             }
-
         });
 
         return map;
     }
+
 }

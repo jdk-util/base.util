@@ -1,8 +1,6 @@
 package base.util.collections;
 
-import java.util.Collection;
-import java.util.Map;
-import java.util.Objects;
+import java.util.*;
 
 /**
  * @Author: weixuedong
@@ -17,11 +15,8 @@ public class CollectionUtil {
      * @return 结果
      */
     public static boolean isEmpty(Collection collection){
-
         if(Objects.isNull(collection) || collection.isEmpty()){
-
             return true;
-
         }
         return false;
     }
@@ -32,11 +27,8 @@ public class CollectionUtil {
      * @return 结果
      */
     public static boolean isNotEmpty(Collection collection){
-
         if(Objects.isNull(collection) || collection.isEmpty()){
-
             return false;
-
         }
         return true;
     }
@@ -47,11 +39,8 @@ public class CollectionUtil {
      * @return 结果
      */
     public static boolean isEmpty(Map collection){
-
         if(Objects.isNull(collection) || collection.isEmpty()){
-
             return true;
-
         }
         return false;
     }
@@ -62,12 +51,10 @@ public class CollectionUtil {
      * @return 结果
      */
     public static boolean isNotEmpty(Map collection){
-
         if(Objects.isNull(collection) || collection.isEmpty()){
-
             return false;
-
         }
         return true;
     }
+
 }

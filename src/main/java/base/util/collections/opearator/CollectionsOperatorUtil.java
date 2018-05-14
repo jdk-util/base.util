@@ -1,5 +1,6 @@
 package base.util.collections.opearator;
 
+import base.util.collections.CollectionUtil;
 import base.util.object.CopyUtil;
 
 import java.util.*;
@@ -103,5 +104,30 @@ public class CollectionsOperatorUtil {
             }
         }
         return repeatList;
+    }
+
+    /**
+     *按数量对集合进行分组，保证每组得数量一致，但是不够得情况则不补
+     * @param count 每组数量
+     * @param list 数据集合
+     * @param <T> 支持数据类型
+     * @return 返回分组后得结果 key是组号从1开始 value是数量符合count得集合
+     */
+    public static <T> Map<Integer,List<T>> countGroup(int count, List<T> list){
+        Map<Integer,List<T>> map = new HashMap<>();
+        if(CollectionUtil.isEmpty(list)){
+            return map;
+        }
+
+        for(int i = 1; i<=(int)(list.size()/count+1); i++){
+            List<T> subList;
+            try {
+                subList = list.subList((i-1)*count,count*i);
+            }catch (IndexOutOfBoundsException e){
+                subList = list.subList((i-1)*count,list.size());
+            }
+            map.put(map.size()+1,subList);
+        }
+        return map;
     }
 }
