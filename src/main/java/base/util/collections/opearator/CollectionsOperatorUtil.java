@@ -1,9 +1,12 @@
 package base.util.collections.opearator;
 
 import base.util.collections.CollectionUtil;
+import base.util.collections.parser.CollectionsParserUtil;
 import base.util.object.CopyUtil;
+import com.sun.istack.internal.NotNull;
 
 import java.util.*;
+import java.util.function.Function;
 import java.util.function.Predicate;
 import java.util.stream.Collectors;
 
@@ -129,5 +132,31 @@ public class CollectionsOperatorUtil {
             map.put(map.size()+1,subList);
         }
         return map;
+    }
+
+    /**
+     * 按照一个方式和排序参照进行排序，顺序于soreReferences一致
+     * 原位排序
+     * @param list  数据
+     * @param sortReferences 排序参照
+     * @param function 转换方式
+     * @param <T> 需要排序得数据类型
+     * @param <R> 参照得数据类型
+     * @return
+     */
+    public static <T,R> void sortBy(List<T> list, Set<R> sortReferences, Function<T,R> function){
+        if(CollectionUtil.isNotEmpty(list) && CollectionUtil.isNotEmpty(sortReferences) && !Objects.isNull(function)) {
+            List<T> sorts = new ArrayList<>(list.size());
+
+            sortReferences.forEach(sortReference -> {
+
+                List<T> findDatas = list.stream().filter(data -> function.apply(data) == sortReference).collect(Collectors.toList());
+
+                sorts.addAll(findDatas);
+            });
+            list.clear();
+
+            list.addAll(sorts);
+        }
     }
 }
