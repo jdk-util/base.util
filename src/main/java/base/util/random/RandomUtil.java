@@ -1,5 +1,6 @@
 package base.util.random;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
@@ -27,5 +28,19 @@ public class RandomUtil {
     public static <T> T rangeRandom(List<T> list){
         int intIndex = new Random().nextInt(list.size());
         return list.get(intIndex);
+    }
+
+    /**
+     * 范围固定类型随机数
+     * @param list   备选范围
+     * @return 随机数
+     */
+    public static <T> List<T> rangeRandomSize(List<T> list,int size){
+        List<T> listRadom = new ArrayList<>(size);
+        for(int i=1;i<=size;i++) {
+            int intIndex = new Random().nextInt(list.size());
+            listRadom.add(list.get(intIndex));
+        }
+        return listRadom;
     }
 }
