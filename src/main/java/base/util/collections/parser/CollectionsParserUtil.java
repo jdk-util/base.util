@@ -32,6 +32,19 @@ public class CollectionsParserUtil {
         return list.stream().map((t) -> function.apply(t)).collect(Collectors.toList());
 
     }
+    /**
+     * T集合转换成R集合，也可以用于集合属性的提取
+     * @param list 集合
+     * @param function 转换方法
+     * @param <T> 集合里得数据类型
+     * @param <R> 返回值类型
+     * @return
+     */
+    public static <T,R> Set<R> collectFieldToSet(List<T> list,Function<T,R> function) {
+
+        return list.stream().map((t) -> function.apply(t)).collect(Collectors.toSet());
+
+    }
 
     /**
      * 强行将一个集合转成另一个集合
