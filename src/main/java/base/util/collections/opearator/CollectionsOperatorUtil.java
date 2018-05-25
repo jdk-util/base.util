@@ -10,6 +10,10 @@ import java.util.function.Function;
 import java.util.function.Predicate;
 import java.util.stream.Collectors;
 
+import static java.util.Comparator.comparing;
+import static java.util.stream.Collectors.collectingAndThen;
+import static java.util.stream.Collectors.toCollection;
+
 /**
  * @Author: weixuedong
  * @Date: 2018/4/12 9:45
@@ -55,6 +59,18 @@ public class CollectionsOperatorUtil {
             list.addAll(distinctList);
         }
         return repeatList;
+    }
+
+    /**
+     * 根据属性去重
+     * @param list 需要去重得
+     * @param <T> 数据类型
+     * @param <R> 去重得类型
+     * @return 去重后得集合
+     */
+    public static <T,R> List<T> distinct(List<T> list,Function<T,R> function){
+        Map<R, T> map = CollectionsParserUtil.collectFieldToMap(list, function);
+        return new ArrayList<>(map.values());
     }
 
     /**
